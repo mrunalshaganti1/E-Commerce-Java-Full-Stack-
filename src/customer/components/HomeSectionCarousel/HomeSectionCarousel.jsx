@@ -4,7 +4,7 @@ import HomeSectionCards from '../Navigation/HomeSectionCard/HomeSectionCards';
 import { Button } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
-const HomeSectionCarousel = ({ props }) => {
+const HomeSectionCarousel = ({ props, sectionName }) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const responsive = {
@@ -44,6 +44,7 @@ const HomeSectionCarousel = ({ props }) => {
 
     return (
         <div className='border'>
+            <h2 className='text-2xl font-extrabold text-gray-800 py-5'>{sectionName}</h2>
             <div className='relative p-5'>
                 <AliceCarousel
                     key={activeIndex} // Force reinitialization on activeIndex change

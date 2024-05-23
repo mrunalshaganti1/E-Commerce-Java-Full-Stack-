@@ -7,7 +7,7 @@ const HomeSectionCards = ({props}) => {
 
         <div className='h-[13rem] w-[10rem]'>
             <img className='object-cover object-top w-full h-full' 
-            src={props.imageUrl} alt="" />
+            src={props.image} alt="" />
         </div>
 
         <div className='p-4'>
