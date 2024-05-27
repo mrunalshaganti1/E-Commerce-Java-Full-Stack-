@@ -1,6 +1,10 @@
 import { useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { Radio, RadioGroup } from '@headlessui/react'
+import { Box, Grid, LinearProgress, Rating } from '@mui/material'
+import ProductPreview from './ProductPreview'
+import { mens_kurta } from '../../../Data/Men/men_kurta'
+import HomeSectionCards from '../Navigation/HomeSectionCard/HomeSectionCards'
 
 const product = {
   name: 'Basic Tee 6-Pack',
@@ -34,14 +38,10 @@ const product = {
     { name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
   ],
   sizes: [
-    { name: 'XXS', inStock: false },
-    { name: 'XS', inStock: true },
     { name: 'S', inStock: true },
     { name: 'M', inStock: true },
     { name: 'L', inStock: true },
     { name: 'XL', inStock: true },
-    { name: '2XL', inStock: true },
-    { name: '3XL', inStock: true },
   ],
   description:
     'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
@@ -65,7 +65,7 @@ export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
 
   return (
-    <div className="bg-white">
+    <div className="bg-white lg:px-20">
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -98,106 +98,64 @@ export default function ProductDetails() {
 
         <section className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10 px-4 pt-10'>
             {/* Image gallery */}
-            <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-            <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
-                <img
-                src={product.images[0].src}
-                alt={product.images[0].alt}
-                className="h-full w-full object-cover object-center"
-                />
-            </div>
-            <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-                <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-                <img
-                    src={product.images[1].src}
-                    alt={product.images[1].alt}
+            <div className="flex flex-col items-center">
+                <div className="overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
+                    <img
+                    src={product.images[0].src}
+                    alt={product.images[0].alt}
                     className="h-full w-full object-cover object-center"
-                />
+                    />
                 </div>
-                <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-                <img
-                    src={product.images[2].src}
-                    alt={product.images[2].alt}
-                    className="h-full w-full object-cover object-center"
-                />
+                <div className="flex flex-wrap space-x-5 justify-center">
+                    {product.images.map((image) =>
+                        <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4">
+                        <img
+                            src={image.src}
+                            alt={image.alt}
+                            className="h-full w-full object-cover object-center"
+                        />
+                    </div>
+                    )} 
                 </div>
-            </div>
-            <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-                <img
-                src={product.images[3].src}
-                alt={product.images[3].alt}
-                className="h-full w-full object-cover object-center"
-                />
-            </div>
+                
             </div>
 
             {/* Product info */}
-            <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
-            <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
+            <div className="lg:col-span-1 max-auto max-w-2xl px-4 pb-16 sm:px-6 lg:max-w-7xl lg:px-8
+            lg:pb-24">
+            <div className="lg:col-span-2">
+                <h1 className="text-lg lg:text-xl font-semibold text-gray-900">Brand Name</h1>
+                <h1 className='text-lg lg:text-xl text-gray-900 opacity-60 pt-1'>{product.name}</h1>
             </div>
 
             {/* Options */}
             <div className="mt-4 lg:row-span-3 lg:mt-0">
                 <h2 className="sr-only">Product information</h2>
                 <p className="text-3xl tracking-tight text-gray-900">{product.price}</p>
-
-                {/* Reviews */}
-                <div className="mt-6">
-                <h3 className="sr-only">Reviews</h3>
-                <div className="flex items-center">
-                    <div className="flex items-center">
-                    {[0, 1, 2, 3, 4].map((rating) => (
-                        <StarIcon
-                        key={rating}
-                        className={classNames(
-                            reviews.average > rating ? 'text-gray-900' : 'text-gray-200',
-                            'h-5 w-5 flex-shrink-0'
-                        )}
-                        aria-hidden="true"
-                        />
-                    ))}
-                    </div>
-                    <p className="sr-only">{reviews.average} out of 5 stars</p>
-                    <a href={reviews.href} className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                    {reviews.totalCount} reviews
-                    </a>
+                
+                <div className='flex space-x-5 items-center text-lg lg:text-xl text-gray-900 mt-6'>
+                    <p className='font-semibold'>
+                        $59
+                    </p>
+                    <p className='opacity-50 line-through'>
+                        $99
+                    </p>
+                    <p className='text-green-600 font-semibold'> 
+                        5% Off
+                    </p>
                 </div>
+                {/* Reviews */}
+                <div className="mt-6"> 
+                    <div className='flex items-center space-x-3'>
+                        <Rating name="read-only" value={3.7 } readOnly />
+                        <p className='opacity-50 text-sm'>54534 Ratings</p>
+                        <p className='ml-3 text-sm font-medium text-indigo-600
+                        hover:text-indigo-500'>3253 Reviews</p>
+                    </div>
+                    
                 </div>
 
                 <form className="mt-10">
-                {/* Colors */}
-                <div>
-                    <h3 className="text-sm font-medium text-gray-900">Color</h3>
-
-                    <fieldset aria-label="Choose a color" className="mt-4">
-                    <RadioGroup value={selectedColor} onChange={setSelectedColor} className="flex items-center space-x-3">
-                        {product.colors.map((color) => (
-                        <Radio
-                            key={color.name}
-                            value={color}
-                            aria-label={color.name}
-                            className={({ focus, checked }) =>
-                            classNames(
-                                color.selectedClass,
-                                focus && checked ? 'ring ring-offset-1' : '',
-                                !focus && checked ? 'ring-2' : '',
-                                'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none'
-                            )
-                            }
-                        >
-                            <span
-                            aria-hidden="true"
-                            className={classNames(
-                                color.class,
-                                'h-8 w-8 rounded-full border border-black border-opacity-10'
-                            )}
-                            />
-                        </Radio>
-                        ))}
-                    </RadioGroup>
-                    </fieldset>
-                </div>
 
                 {/* Sizes */}
                 <div className="mt-10">
@@ -279,15 +237,15 @@ export default function ProductDetails() {
                 <h3 className="sr-only">Description</h3>
 
                 <div className="space-y-6">
-                    <p className="text-base text-gray-900">{product.description}</p>
+                    <p className="text-left text-gray-900">{product.description}</p>
                 </div>
                 </div>
 
                 <div className="mt-10">
-                <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
+                <h3 className="text-sm text-left font-medium text-gray-900">Highlights</h3>
 
                 <div className="mt-4">
-                    <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
+                    <ul role="list" className="list-disc text-left space-y-2 pl-4 text-sm">
                     {product.highlights.map((highlight) => (
                         <li key={highlight} className="text-gray-400">
                         <span className="text-gray-600">{highlight}</span>
@@ -298,18 +256,91 @@ export default function ProductDetails() {
                 </div>
 
                 <div className="mt-10">
-                <h2 className="text-sm font-medium text-gray-900">Details</h2>
+                <h2 className="text-sm text-left font-medium text-gray-900">Details</h2>
 
                 <div className="mt-4 space-y-6">
-                    <p className="text-sm text-gray-600">{product.details}</p>
+                    <p className="text-sm text-left text-gray-600">{product.details}</p>
                 </div>
                 </div>
             </div>
             </div>
         </section>
+        
+        {/* Rating and Reviews */}
+        <section>
+            <h1 className='font-semibold text-lg pb-4'>Recent Review and Rating</h1>
 
+            <div className='border p-5'>
+                <Grid container spacing={7}>
+                    <Grid item xs={7}>
+                        <div className='space-y-5 text-left'>
+                            {[1,1,1].map((item) => <ProductPreview/>)}
+                        </div>
+                    </Grid>
+                    <Grid item xs={5}>
+                        <h1 className='text-xl text-left font-semibold pb-2'>Product Ratings</h1>
 
-       
+                        <div className='flex items-center space-x-3'>
+                            <Rating name='read-only' value={4.6} precision={0.5} readOnly/>
+                            <p className='opacity-60'>34234 Ratings</p>
+                        </div>
+
+                        <Box className='mt-5 space-y-3'>
+                            <Grid container justifyContent="center" alignItems="center" gap={2}>
+                                <Grid item xs={2}>
+                                    <p>Excellent</p>
+                                </Grid>
+                                <Grid item xs={7}>
+                                    <LinearProgress sx={{bgcolor:"grady", borderRadius:4, height:7}} variant='determinate' value={40} color='success'/>
+                                </Grid>
+                            </Grid>
+
+                            <Grid container justifyContent="center" alignItems="center" gap={2}>
+                                <Grid item xs={2}>
+                                    <p>Very Good</p>
+                                </Grid>
+                                <Grid item xs={7}>
+                                    <LinearProgress sx={{bgcolor:"grady", borderRadius:4, height:7}} variant='determinate' value={30} color='success'/>
+                                </Grid>
+                            </Grid>
+
+                            <Grid container justifyContent="center" alignItems="center" gap={2}>
+                                <Grid item xs={2}>
+                                    <p>Good</p>
+                                </Grid>
+                                <Grid item xs={7}>
+                                    <LinearProgress sx={{bgcolor:"grady", borderRadius:4, height:7}} variant='determinate' value={25} className='bg-yellow-500'/>
+                                </Grid>
+                            </Grid>
+
+                            <Grid container justifyContent="center" alignItems="center" gap={2}>
+                                <Grid item xs={2}>
+                                    <p>Average</p>
+                                </Grid>
+                                <Grid item xs={7}>
+                                    <LinearProgress sx={{bgcolor:"grady", borderRadius:4, height:7}} variant='determinate' value={20} color='warning'/>
+                                </Grid>
+                            </Grid>
+
+                            <Grid container justifyContent="center" alignItems="center" gap={2}>
+                                <Grid item xs={2}>
+                                    <p>Poor</p>
+                                </Grid>
+                                <Grid item xs={7}>
+                                    <LinearProgress sx={{bgcolor:"grady", borderRadius:4, height:7}} variant='determinate' value={10} color='error'/>
+                                </Grid>
+                            </Grid>
+                        </Box>
+                    </Grid>
+                </Grid>
+            </div>
+        </section>
+
+        {/*Similar Products*/}
+        <h1 className='py-5 text-xl text-left font-bold'>Similar Products</h1>
+        <div className='flex flex-wrap space-y-5'>
+            {mens_kurta.map((item) => <HomeSectionCards props={item}/>)}
+        </div>
       </div>
     </div>
   )
