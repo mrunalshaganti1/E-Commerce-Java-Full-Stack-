@@ -5,6 +5,7 @@ import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@her
 import { Avatar, Button, Menu, MenuItem } from '@mui/material';
 import { deepPurple } from '@mui/material/colors';
 import { navigation } from '../../../Data/navigation';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -14,6 +15,7 @@ function classNames(...classes) {
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -35,9 +37,9 @@ export default function Navigation() {
   }
 
   const handleCategoryClick = (category, section, item, close) => {
-    //navigate('/${category.id/${section.id}/${item.id}');
-    close();
-  }
+    navigate(`/${category.id}/${section.id}/${item.id}`);
+    //close();
+  };
 
   return (
     <div className="bg-white z-50 relative">
@@ -281,9 +283,15 @@ export default function Navigation() {
                                           >
                                             {section.items.map((item) => (
                                               <li key={item.name} className="flex">
-                                                <a href={item.href} className="hover:text-gray-800">
+                                                <p onClick={() => 
+                                                handleCategoryClick(
+                                                  category, 
+                                                  section, 
+                                                  item, 
+                                                  )}
+                                                 className="hover:text-gray-800">
                                                   {item.name}
-                                                </a>
+                                                </p>
                                               </li>
                                             ))}
                                           </ul>
@@ -345,7 +353,7 @@ export default function Navigation() {
                           Profile
                         </MenuItem>
                         
-                        <MenuItem>
+                        <MenuItem onClick={() => navigate("/account/order")}>
                           My Orders
                         </MenuItem>
 
