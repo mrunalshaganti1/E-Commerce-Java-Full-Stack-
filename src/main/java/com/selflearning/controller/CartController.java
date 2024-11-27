@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,5 +68,16 @@ public class CartController {
 			return ResponseEntity.status(400).body("No product with that Id!");
 		}
 		
+	}
+	
+	@PutMapping("/updateCartItem/{cartItemId}")
+	public ResponseEntity<String> updateCartItem(
+	        @RequestHeader("Authorization") String jwt,
+	        @PathVariable Long cartItemId,
+	        @RequestBody AddItemRequest updateRequest
+	) throws UserException, ProductException, CartItemException {
+	    User user = userService.findUserProfileByJwt(jwt);
+	    String response = cartItemService.updateCartItem(user.getId(), cartItemId, updateRequest);
+	    return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }

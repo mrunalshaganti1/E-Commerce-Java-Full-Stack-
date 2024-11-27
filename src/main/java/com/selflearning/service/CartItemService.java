@@ -5,6 +5,7 @@ import com.selflearning.exception.UserException;
 import com.selflearning.model.Cart;
 import com.selflearning.model.CartItem;
 import com.selflearning.model.Product;
+import com.selflearning.request.AddItemRequest;
 
 public interface CartItemService {
 
@@ -17,4 +18,6 @@ public interface CartItemService {
 	public String removeCartItem(Long userId, Long CartIemId) throws CartItemException, UserException;
 	
 	public CartItem findCartItemById(Long cartItemId) throws CartItemException;
+
+	public String updateCartItem(Long id, Long cartItemId, AddItemRequest updateRequest) throws CartItemException, UserException;
 }

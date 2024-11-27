@@ -13,6 +13,7 @@ import com.selflearning.model.Product;
 import com.selflearning.model.User;
 import com.selflearning.repository.CartItemRepository;
 import com.selflearning.repository.CartRepository;
+import com.selflearning.request.AddItemRequest;
 
 @Service
 public class CartItemServiceImplementation implements CartItemService{
@@ -110,5 +111,36 @@ public class CartItemServiceImplementation implements CartItemService{
 		}
 		throw new CartItemException("Item Not Found");	
 	}
+
+	@Override
+	public String updateCartItem(Long userId, Long cartItemId, AddItemRequest updateRequest) throws CartItemException, UserException {
+	    // Find the cart item
+	    CartItem cartItem = findCartItemById(cartItemId);
+
+	    // Validate the user
+	    User user = userService.findUserById(cartItem.getUserId());
+	    if (!user.getId().equals(userId)) {
+	        throw new UserException("You are not authorized to update this cart item.");
+	    }
+
+	    // Update the cart item with new quantity
+	    if (updateRequest.getQuantity() != 0 && updateRequest.getQuantity() > 0) {
+	        cartItem.setQuantity(updateRequest.getQuantity());
+	        cartItem.setPrice(cartItem.getQuantity() * cartItem.getProduct().getPrice());
+	        cartItem.setDiscountedPrice(cartItem.getProduct().getDiscountedPrice() * cartItem.getQuantity());
+	    } else {
+	        throw new CartItemException("Quantity must be greater than 0.");
+	    }
+
+	    // Save the updated cart item
+	    CartItem updatedCartItem = cartItemRepository.save(cartItem);
+
+	    // Recalculate the cart totals
+	    Cart cart = cartRepository.findByUserId(userId);
+	    recalculateCartTotals(cart);
+
+	    return "Cart item updated successfully.";
+	}
+
 
 }
