@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 const ProductCard = ({props}) => {
     const navigate = useNavigate();
 
+    console.log("Product Card: ",props)
   return (
-    <div onClick={() => navigate(`/product/${5}`)} className='productCard w-[15rem] m-3 transition-all cursor-pointer'>
+    <div onClick={() => navigate(`/product/${props.id}`)} className='productCard w-[15rem] m-3 transition-all cursor-pointer'>
         <div className='h-[20rem]'>
             <img className='h-full w-full object-cover object-left-top'
-             src={props.image} alt="" />
+             src={props.imageUrl} alt="" />
         </div>
 
         <div className='textPart bg-white p-3'>

@@ -43,7 +43,7 @@ export default function Navigation() {
 
   const handleCategoryClick = (category, section, item, close) => {
     navigate(`/${category.id}/${section.id}/${item.id}`);
-    close();
+    //close();
   };
 
   const handleLogout = () => {
