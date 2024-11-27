@@ -19,6 +19,6 @@ public interface CartItemService {
 	
 	public CartItem findCartItemById(Long cartItemId) throws CartItemException;
 
-	String updateCartItem(Long userId, Long cartItemId, AddItemRequest updateRequest)
+	public String updateCartItem(Long userId, Long cartItemId, AddItemRequest updateRequest)
 			throws CartItemException, UserException;
 }
