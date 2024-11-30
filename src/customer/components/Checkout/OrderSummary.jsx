@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom'
 import { getOrderById } from '../../../State/Order/Action'
 import CartItem from '../Cart/CartItem'
 import { Button, Divider } from '@mui/material'
+import { createPayment } from '../../../State/Payment/Action'
 
 const OrderSummary = () => {
 
@@ -18,6 +19,10 @@ const OrderSummary = () => {
   useEffect(() => {
     dispatch(getOrderById(orderId));
   }, [orderId])
+
+  const handlePlacingOrder = () => {
+    dispatch(createPayment(orderId));
+  }
   return (
     <div>
       <div className='p-5 shadow-lg rounded-md border'>
@@ -56,7 +61,8 @@ const OrderSummary = () => {
                 // onClick={handleCheckout}
                 variant="contained"
                  className="w-full mt-5" 
-                 sx={{px:"2.5rem",py:"0.7rem", bgcolor:"#9155fd"}}>
+                 sx={{px:"2.5rem",py:"0.7rem", bgcolor:"#9155fd"}}
+                 onClick={handlePlacingOrder}>
                     Place Order
                 </Button>
             </div>
