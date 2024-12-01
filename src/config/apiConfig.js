@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_BASEURL = "http://localhost:5454";
+export const API_BASEURL = "https://e-commerce-server-code-production.up.railway.app";
 const jwt = localStorage.getItem("jwt");
 
 export const api = axios.create({
