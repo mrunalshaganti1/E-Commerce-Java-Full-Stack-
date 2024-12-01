@@ -10,6 +10,10 @@ import ProductDetails from '../customer/components/ProductDetails/ProductDetails
 import ProductCard from '../customer/components/Product/ProductCard'
 import Checkout from '../customer/components/Checkout/Checkout'
 import Order from '../customer/components/Order/Order'
+<<<<<<< HEAD
+=======
+import PaymentSuccess from '../customer/components/Payment/PaymentSuccess'
+>>>>>>> parent of ccdf62d (Delete all files in the repository)
 
 const CoustomerRoutes = () => {
   return (
@@ -27,6 +31,10 @@ const CoustomerRoutes = () => {
             <Route path='/checkout' element={<Checkout/>}></Route>
             <Route path='/account/order' element={<Order/>}></Route>
             <Route path='/account/order/:orderId' element={<OrderDetail/>}></Route>
+<<<<<<< HEAD
+=======
+            <Route path='/payment/:orderId' element={<PaymentSuccess/>}></Route>
+>>>>>>> parent of ccdf62d (Delete all files in the repository)
         </Routes>
         <div>
             <Footer/>
