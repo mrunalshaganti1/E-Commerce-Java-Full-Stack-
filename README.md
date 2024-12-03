@@ -1,71 +1,175 @@
-# Getting Started with Create React App
+# E-Commerce Full Stack Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the **E-Commerce Full Stack Application**! This project is a robust, feature-rich e-commerce platform built using modern technologies for both the frontend and backend. The platform includes a **customer-facing store**, **admin dashboard**, and is deployed on **Vercel** and **Railway** for a seamless, scalable experience.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🌐 **Live Demo**
 
-### `npm start`
+- **Frontend**: [Vercel Deployment](https://your-frontend.vercel.app)  
+- **Backend**: [Railway API](https://your-backend.railway.app)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📋 **Features**
 
-### `npm test`
+### 🛍️ Customer Platform
+- **User Registration & Login**: Secure authentication using JWT.
+- **Product Listings**: Browse and filter products by category, price, and ratings.
+- **Product Details**: View detailed product descriptions, images, and reviews.
+- **Shopping Cart**: Add, update, and remove items.
+- **Checkout**: Place orders with dynamic payment links using Razorpay.
+- **Order Tracking**: Track the status of your order in real-time.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🛠️ Admin Dashboard
+- **Product Management**: Add, edit, and delete products.
+- **Order Management**: View and update order statuses.
+- **User Management**: Manage customer accounts and access levels.
+- **Analytics**: Dashboard with sales, inventory, and user insights.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 **Technologies Used**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **Frontend**
+- **Framework**: React.js
+- **Styling**: Material-UI, Tailwind CSS
+- **State Management**: Redux Toolkit
+- **API Integration**: Axios
+- **Deployment**: [Vercel](https://vercel.com)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **Backend**
+- **Framework**: Spring Boot
+- **Database**: MySQL (Hosted on Railway)
+- **ORM**: Hibernate/JPA
+- **Authentication**: JWT (JSON Web Tokens)
+- **Payments**: Razorpay Integration
+- **Deployment**: [Railway](https://railway.app)
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🛠️ **Deployment Workflow**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### **Frontend (Vercel)**
+1. Frontend code is deployed automatically upon commits to the `main` branch in GitHub.
+2. Preview deployments are created for pull requests.
+3. Stable versions remain live until new builds are successful.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### **Backend (Railway)**
+1. Backend code is deployed automatically upon commits to the `main` branch in GitHub.
+2. Environment variables are managed securely through Railway.
+3. Deployment history allows easy rollback to previous stable versions.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 📦 **Installation Guide**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### **Frontend**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/frontend-repo.git
+   ```
+2. Navigate to the project folder:
+   ```bash
+   cd frontend-repo
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm start
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### **Backend**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/backend-repo.git
+   ```
+2. Navigate to the project folder:
+   ```bash
+   cd backend-repo
+   ```
+3. Configure your database and environment variables in `application.properties`:
+   ```properties
+   spring.datasource.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+   spring.datasource.username=${DB_USERNAME}
+   spring.datasource.password=${DB_PASSWORD}
+   ```
+4. Build the project:
+   ```bash
+   mvn clean install
+   ```
+5. Run the application:
+   ```bash
+   java -jar target/backend-0.0.1-SNAPSHOT.jar
+   ```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🛡️ **Environment Variables**
 
-### Analyzing the Bundle Size
+### **Frontend (Vercel)**
+- `REACT_APP_API_BASE_URL`: Base URL of the backend API.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### **Backend (Railway)**
+- `DB_HOST`: Database host.
+- `DB_PORT`: Database port.
+- `DB_NAME`: Database name.
+- `DB_USERNAME`: Database username.
+- `DB_PASSWORD`: Database password.
+- `RAZORPAY_API_KEY`: Razorpay API key.
+- `RAZORPAY_API_SECRET`: Razorpay API secret.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🔧 **Development Workflow**
 
-### Advanced Configuration
+### **Pull Request Guidelines**
+1. Create a feature branch:
+   ```bash
+   git checkout -b feature/your-feature
+   ```
+2. Commit your changes:
+   ```bash
+   git commit -m "Add feature: your-feature"
+   ```
+3. Push your branch:
+   ```bash
+   git push origin feature/your-feature
+   ```
+4. Open a pull request to the `main` branch.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### **Testing**
+- **Frontend**: Run unit tests with Jest:
+  ```bash
+  npm test
+  ```
+- **Backend**: Run tests with Maven:
+  ```bash
+  mvn test
+  ```
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🛠️ **Future Enhancements**
+- **Microservices Architecture**: Separate the user, product, and order management into microservices.
+- **Advanced Analytics**: Add detailed insights for admin users.
+- **Real-Time Notifications**: Implement WebSocket for order status updates.
+- **Mobile App**: Build a React Native application.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# E-Commerce-Java-Full-Stack-" 
+## 🙌 **Contributors**
+- **Your Name**: Full-Stack Developer
+- **Your Team Members**: [Add team names here]
+
+---
+
+## 📝 **License**
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+Feel free to customize this README to match your project's specific details and tone! 🚀
