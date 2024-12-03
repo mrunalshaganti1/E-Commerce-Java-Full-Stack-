@@ -169,7 +169,3 @@ Welcome to the **E-Commerce Full Stack Application**! This project is a robust, 
 
 ## 📝 **License**
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-Feel free to customize this README to match your project's specific details and tone! 🚀
