@@ -1,6 +1,6 @@
 
-import { api } from "../../config/apiConfig";
-import { FIND_PRODUCT_BY_FAILURE, FIND_PRODUCT_BY_ID_FAILURE, FIND_PRODUCT_BY_ID_REQUEST, FIND_PRODUCT_BY_ID_SUCCESS, FIND_PRODUCT_BY_REQUEST, FIND_PRODUCT_BY_SUCCESS } from "./ActionType";
+import { api, API_BASEURL } from "../../config/apiConfig";
+import { CREATE_PRODUCT_FAILURE, CREATE_PRODUCT_REQUEST, CREATE_PRODUCT_SUCCESS, DELETE_BY_ID_FAILURE, DELETE_BY_ID_REQUEST, DELETE_BY_ID_SUCCESS, FIND_PRODUCT_BY_FAILURE, FIND_PRODUCT_BY_ID_FAILURE, FIND_PRODUCT_BY_ID_REQUEST, FIND_PRODUCT_BY_ID_SUCCESS, FIND_PRODUCT_BY_REQUEST, FIND_PRODUCT_BY_SUCCESS } from "./ActionType";
 
 
 export const findProducts = (requestData) => async (dispatch) => {
@@ -17,7 +17,7 @@ export const findProducts = (requestData) => async (dispatch) => {
     }
 }
 
- export const findProductsById = (requestData) => async (dispatch) => {
+export const findProductsById = (requestData) => async (dispatch) => {
     dispatch({type: FIND_PRODUCT_BY_ID_REQUEST})
     const {productId} = requestData;
     try {
@@ -27,3 +27,26 @@ export const findProducts = (requestData) => async (dispatch) => {
         dispatch({type: FIND_PRODUCT_BY_ID_FAILURE, payload: error.payload})
     }
 }
+
+export const createProduct = (product) => async (dispatch) => {
+    dispatch({type: CREATE_PRODUCT_REQUEST});
+
+    try {
+        const {data} = await api.post(`/api/admin/products`, product.data);
+        dispatch({type: CREATE_PRODUCT_SUCCESS, payload: data})
+    } catch (error) {
+        dispatch({type: CREATE_PRODUCT_FAILURE, payload: error.message})
+    }
+}
+
+export const deleteProduct = (productId) => async (dispatch) => {
+    dispatch({type: DELETE_BY_ID_REQUEST});
+
+    try {
+        const {data} = await api.get(`${API_BASEURL}/admin/id/${productId}`);
+        console.log("Products Data", data)
+        dispatch({type: DELETE_BY_ID_SUCCESS, payload: productId})
+    } catch (error) {
+        dispatch({type: DELETE_BY_ID_FAILURE, payload: error.message})
+    }
+} 

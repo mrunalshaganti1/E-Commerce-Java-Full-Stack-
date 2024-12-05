@@ -18,7 +18,7 @@ const TrophyImg = styled("img")({
 
 const Achievement = () => {
   return (
-    <Card sx={{position: "relative"}}>
+    <Card sx={{position: "relative", bgcolor: "#7a6668", color: "white"}}>
         <CardContent>
             <div className='flex flex-col items-start'>
                 <Typography variant='h6' sx={{letterSpacing: ".25px"}}>
