@@ -1,4 +1,4 @@
-import { DELETE_BY_ID_SUCCESS, FIND_PRODUCT_BY_FAILURE, FIND_PRODUCT_BY_ID_FAILURE, FIND_PRODUCT_BY_ID_REQUEST, FIND_PRODUCT_BY_ID_SUCCESS, FIND_PRODUCT_BY_REQUEST, FIND_PRODUCT_BY_SUCCESS } from "./ActionType";
+import { DELETE_BY_ID_REQUEST, DELETE_BY_ID_SUCCESS, FIND_PRODUCT_BY_FAILURE, FIND_PRODUCT_BY_ID_FAILURE, FIND_PRODUCT_BY_ID_REQUEST, FIND_PRODUCT_BY_ID_SUCCESS, FIND_PRODUCT_BY_REQUEST, FIND_PRODUCT_BY_SUCCESS } from "./ActionType";
 
 const initialState = {
     products: [],
@@ -13,6 +13,8 @@ export const customerProductReducer = (state = initialState, action) => {
         case FIND_PRODUCT_BY_REQUEST:
         case FIND_PRODUCT_BY_ID_REQUEST:
             return {...state, loading: true, error:null}
+        case DELETE_BY_ID_REQUEST:
+            return {...state, loading: true, error:null, deletedProduct: null}
 
         case FIND_PRODUCT_BY_SUCCESS:
             return {...state, loading: false, error: null, products: action.payload}
@@ -20,7 +22,13 @@ export const customerProductReducer = (state = initialState, action) => {
         case FIND_PRODUCT_BY_ID_SUCCESS:
             return {...state, loading: false, error: null, product:action.payload};
         case DELETE_BY_ID_SUCCESS:
-            return {...state, loading: false, error: null, products: state.products.filter((item)=> item.id !== action.payload)}
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                product: action.payload, // Track deleted product
+            };
+
         case FIND_PRODUCT_BY_FAILURE:
         case FIND_PRODUCT_BY_ID_FAILURE:
             return {...state, loading: false, error: action.payload}

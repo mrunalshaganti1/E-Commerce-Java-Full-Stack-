@@ -28,7 +28,7 @@ const ProductsTable = () => {
        stock: ""
     }
     dispatch(findProducts(data));
-  },[])
+  },[products.product])
   return (
     <div className='p-5'>
       <Card className='mt-2' sx={{bgcolor: "#7a6668"}}>

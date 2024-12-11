@@ -32,7 +32,7 @@ export const createProduct = (product) => async (dispatch) => {
     dispatch({type: CREATE_PRODUCT_REQUEST});
 
     try {
-        const {data} = await api.post(`/api/admin/products`, product.data);
+        const {data} = await api.post(`/admin/createproduct`, product);
         dispatch({type: CREATE_PRODUCT_SUCCESS, payload: data})
     } catch (error) {
         dispatch({type: CREATE_PRODUCT_FAILURE, payload: error.message})
@@ -40,11 +40,11 @@ export const createProduct = (product) => async (dispatch) => {
 }
 
 export const deleteProduct = (productId) => async (dispatch) => {
-    dispatch({type: DELETE_BY_ID_REQUEST});
-
     try {
-        const {data} = await api.get(`${API_BASEURL}/admin/id/${productId}`);
+        dispatch({type: DELETE_BY_ID_REQUEST});
+        const {data} = await api.delete(`${API_BASEURL}/admin/id/${productId}`);
         console.log("Products Data", data)
+        console.log("Payload Data: ", [productId])
         dispatch({type: DELETE_BY_ID_SUCCESS, payload: productId})
     } catch (error) {
         dispatch({type: DELETE_BY_ID_FAILURE, payload: error.message})
