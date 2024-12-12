@@ -58,10 +58,8 @@ const OrderSummary = () => {
                     </div>
                 </div>
                 <Button 
-                // onClick={handleCheckout}
                 variant="contained"
                  className="w-full mt-5" 
-                 sx={{px:"2.5rem",py:"0.7rem", bgcolor:"#9155fd"}}>
                  sx={{px:"2.5rem",py:"0.7rem", bgcolor:"#9155fd"}}
                  onClick={handlePlacingOrder}>
                     Place Order

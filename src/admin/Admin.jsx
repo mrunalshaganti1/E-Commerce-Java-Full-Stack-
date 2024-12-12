@@ -67,7 +67,7 @@ const Admin = () => {
         <div className='flex h-[100vh]'>
             <CssBaseline/>
 
-            <div className='w-[15%] border border-r-gray-900 h-full fixed top-0'>
+            <div className='shadow-lg shadow-black w-[15%] border border-r-gray-900 h-full fixed top-0'>
               {drawer}
             </div>
 
