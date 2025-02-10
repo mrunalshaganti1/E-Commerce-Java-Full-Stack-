@@ -14,6 +14,7 @@ export const register = (userData) => async (dispatch) => {
 
     try {
         const response = await axios.post(`${API_BASEURL}/auth/signup`, userData);
+        console.log("Url: ", API_BASEURL);
         const user = response.data;
         if(user.jwt){
             localStorage.setItem("jwt",user.jwt);
