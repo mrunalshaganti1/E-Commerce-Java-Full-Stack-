@@ -4,13 +4,6 @@ Welcome to the **E-Commerce Full Stack Application**! This project is a robust, 
 
 ---
 
-## 🌐 **Live Demo**
-
-- **Frontend**: [Vercel Deployment](https://your-frontend.vercel.app)  
-- **Backend**: [Railway API](https://your-backend.railway.app)
-
----
-
 ## 📋 **Features**
 
 ### 🛍️ Customer Platform
